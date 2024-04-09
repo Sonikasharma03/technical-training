@@ -1,42 +1,42 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+#include <stdio.h>
 
-// Function to left rotate an array by d steps
-vector<int> rotateLeft(int d, const vector<int>& arr) {
-    int n = arr.size();
-    vector<int> rotatedArray(n);
+void reverseArray(int arr[], int N) {
+    int start = 0;
+    int end = N - 1;
+    
+    while (start < end) {
+        // Swap elements at start and end indices
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
 
-    // Perform left rotation
-    for (int i = 0; i < n; i++) {
-        int newIndex = (i + n - d) % n;
-        rotatedArray[newIndex] = arr[i];
+        // Move indices towards the center
+        start++;
+        end--;
     }
-
-    return rotatedArray;
 }
 
 int main() {
-    int n, d;
-    
-    cout << "Enter the size of the array: ";
-    cin >> n;
+    int N;
 
-    cout << "Enter the number of left rotations: ";
-    cin >> d;
+    // Input the size of the array
+    printf("Enter the size of the array: ");
+    scanf("%d", &N);
 
-    vector<int> arr(n);
-
-    cout << "Enter the elements of the array: ";
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+    // Input array elements
+    int A[N];
+    printf("Enter %d integers separated by space: ", N);
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &A[i]);
     }
 
-    vector<int> result = rotateLeft(d, arr);
+    // Reverse the array
+    reverseArray(A, N);
 
-    cout << "Rotated Array: ";
-    for (int i = 0; i < n; i++) {
-        cout << result[i] << " ";
+    // Display the reversed array
+    printf("Reversed array: ");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", A[i]);
     }
 
     return 0;
